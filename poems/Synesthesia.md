@@ -15,7 +15,7 @@ Fading, I find your face in every frequency.
 
 Softly, some songs still speak of you,
 Lavender light leaves me longing too;
-Tender tones tell truths time cannot take,
+Tender tones tell truths time cannot show,
 Down the distance, your echoes delicately flow.
 
 Down dimmed roads, I deliver songs we never shared,
