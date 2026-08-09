@@ -1,1 +1,161 @@
-:root{--bg:#f2f2f7;--panel:#fff;--side:#e9e9ee;--text:#1c1c1e;--muted:#8e8e93;--line:rgba(60,60,67,.16);--blue:#007aff;--yellow:#ffcc00}*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;color:var(--text);background:var(--bg)}button,input{font:inherit}button{border:0;background:none;cursor:pointer}.app{height:100vh;display:grid;grid-template-columns:230px 350px 1fr;overflow:hidden}.sidebar{background:var(--side);border-right:1px solid var(--line);padding:16px 10px;display:flex;flex-direction:column}.brand{font-size:20px;padding:8px 10px 18px;display:flex;gap:9px;align-items:center}.brand span{color:var(--yellow)}.search{height:36px;border-radius:9px;background:rgba(118,118,128,.14);display:flex;gap:7px;align-items:center;padding:0 10px;color:var(--muted)}.search input{border:0;outline:0;background:none;width:100%;color:var(--text)}nav{margin-top:12px}.folder{width:100%;display:grid;grid-template-columns:25px 1fr auto;text-align:left;padding:10px;border-radius:8px}.folder.active{background:#d9d9de;font-weight:600}.folder em{font-style:normal;color:var(--muted);font-size:13px}.sidefoot{margin-top:auto;color:var(--muted);font-size:11px;padding:10px}.list{overflow:auto}.listhead{height:78px;border-bottom:1px solid var(--line);padding:12px 17px;display:flex;align-items:center;gap:8px}.listhead h1{margin:0;font-size:23px}.listhead p{margin:3px 0 0;color:var(--muted);font-size:12px}.note{padding:14px 17px;border-bottom:1px solid var(--line);cursor:pointer}.note:hover{background:#f6f6f8}.note.selected{background:#e5e5ea}.title{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.preview{color:var(--muted);font-size:13px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.date{font-size:11px;color:var(--muted);margin-top:7px}.reader{background:#fff;min-width:0;display:flex;flex-direction:column}.reader>header{height:56px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:8px 14px}.back{color:var(--blue);font-size:16px}.paper{width:min(820px,100%);margin:auto;align-self:center;padding:52px 9%;overflow:auto;height:calc(100vh - 56px)}.paper h1{font-size:clamp(30px,4vw,44px);line-height:1.1;margin:0 0 9px}.meta{font-size:12px;color:var(--muted);margin-bottom:38px}.poem{font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.75;white-space:pre-wrap}.comments{margin-top:65px;padding-top:30px;border-top:1px solid var(--line)}.comments h2{font-size:19px;margin:0 0 8px}.comments p{color:var(--muted);font-size:13px;margin:0 0 18px}.empty{text-align:center;color:var(--muted);padding:80px 20px}.empty div{font-size:38px;color:var(--yellow)}.empty h2{color:var(--text)}.hidden{display:none}.mobile,.drawer{display:none}@media(max-width:800px){.app{display:block}.sidebar,main{height:100vh}.sidebar{display:none}.app main{display:block}.reader{position:fixed;inset:0;transform:translateX(105%);transition:.22s;z-index:3}.reader.open{transform:translateX(0)}.mobile{display:block;color:var(--blue);font-size:19px}.paper{padding:35px 22px}.poem{font-size:18px}.drawer{position:fixed;z-index:10;inset:0 auto 0 0;width:275px;background:#eeeef2;box-shadow:8px 0 30px #0002;transform:translateX(-105%);transition:.22s;display:block}.drawer.open{transform:translateX(0)}.drawer-head{height:58px;padding:14px 16px;display:flex;justify-content:space-between;font-size:19px}.drawer-head button{font-size:28px;color:var(--blue)}#drawerList .note{background:transparent}}
+:root {
+  --bg-sidebar: #f6f6f6;
+  --bg-note: #ffffff;
+  --border-color: #e0e0e0;
+  --text-primary: #1c1c1e;
+  --text-secondary: #8e8e93;
+  --accent-yellow: #e5b300;
+  --selected-bg: #e5e5ea;
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #d1d1d6;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notes-app {
+  display: flex;
+  width: 90vw;
+  max-width: 1000px;
+  height: 85vh;
+  background: var(--bg-note);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 320px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #e3e3e8;
+  font-size: 14px;
+  outline: none;
+}
+
+.notes-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.note-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.note-item:hover {
+  background-color: #ebebeb;
+}
+
+.note-item.active {
+  background-color: var(--selected-bg);
+}
+
+.note-item-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-item-meta {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+}
+
+.note-item-snippet {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #636366;
+}
+
+/* Note View Styling */
+.note-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-note);
+  padding: 24px 36px;
+  overflow-y: auto;
+}
+
+.note-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.note-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.note-content h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+#noteBody {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #2c2c2e;
+  white-space: pre-wrap; /* Keeps line breaks intact for poetry formatting */
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .notes-app {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: 40%;
+  }
+}
