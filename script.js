@@ -54,7 +54,9 @@ const pathname =
 
 
 if (!hostname.endsWith(".github.io")) {
+
     return null;
+
 }
 
 
@@ -71,7 +73,7 @@ const parts =
 if (parts.length === 0) {
 
     return {
-        owner,
+        owner: owner,
         repo: `${owner}.github.io`
     };
 
@@ -79,7 +81,7 @@ if (parts.length === 0) {
 
 
 return {
-    owner,
+    owner: owner,
     repo: parts[0]
 };
 ```
@@ -135,10 +137,13 @@ try {
 
     const markdownFiles =
         files.filter(file =>
+
             file.type === "file" &&
+
             file.name
                 .toLowerCase()
                 .endsWith(".md")
+
         );
 
 
@@ -153,7 +158,9 @@ try {
 
     const loadedPoems =
         await Promise.all(
-            markdownFiles.map(loadPoem)
+            markdownFiles.map(
+                loadPoem
+            )
         );
 
 
@@ -167,13 +174,11 @@ try {
 
 
     /*
-       IMPORTANT:
+       The homepage does NOT automatically
+       open the newest poem.
 
-       Do NOT automatically open the
-       newest poem.
-
-       The website starts on the
-       front page instead.
+       A poem is only opened automatically
+       when ?poem=filename.md exists.
     */
 
     const requestedPoem =
@@ -181,12 +186,6 @@ try {
             window.location.search
         ).get("poem");
 
-
-    /*
-       Only open a poem automatically if
-       the visitor arrived at a URL that
-       specifically contains ?poem=...
-    */
 
     if (requestedPoem) {
 
@@ -235,7 +234,9 @@ async function loadPoem(file) {
 try {
 
     const response =
-        await fetch(file.download_url);
+        await fetch(
+            file.download_url
+        );
 
 
     if (!response.ok) {
@@ -252,7 +253,9 @@ try {
 
 
     const metadata =
-        parseFrontMatter(markdown);
+        parseFrontMatter(
+            markdown
+        );
 
 
     return {
@@ -271,13 +274,17 @@ try {
 
         title:
             metadata.title ||
-            filenameToTitle(file.name),
+            filenameToTitle(
+                file.name
+            ),
 
         date:
             metadata.date || "",
 
         dateObject:
-            parseDate(metadata.date),
+            parseDate(
+                metadata.date
+            ),
 
         githubURL:
             `https://github.com/` +
@@ -349,7 +356,9 @@ frontMatter
 
 
         if (separator === -1) {
+
             return;
+
         }
 
 
@@ -376,21 +385,27 @@ frontMatter
 
 
         if (key === "title") {
+
             title = value;
+
         }
 
 
         if (key === "date") {
+
             date = value;
+
         }
 
     });
 
 
 return {
+
     title,
     date,
     content
+
 };
 ```
 
@@ -432,7 +447,9 @@ function parseDate(dateString) {
 
 ```
 if (!dateString) {
+
     return new Date(0);
+
 }
 
 
@@ -440,8 +457,14 @@ const date =
     new Date(dateString);
 
 
-if (isNaN(date.getTime())) {
+if (
+    isNaN(
+        date.getTime()
+    )
+) {
+
     return new Date(0);
+
 }
 
 
@@ -454,7 +477,9 @@ function formatDate(dateString) {
 
 ```
 if (!dateString) {
+
     return "";
+
 }
 
 
@@ -462,8 +487,12 @@ const date =
     parseDate(dateString);
 
 
-if (date.getTime() === 0) {
+if (
+    date.getTime() === 0
+) {
+
     return dateString;
+
 }
 
 
@@ -495,7 +524,9 @@ return b.dateObject - a.dateObject;
 SIDEBAR
 ========================================= */
 
-function renderNotesList(filter = "") {
+function renderNotesList(
+filter = ""
+) {
 
 ```
 notesList.innerHTML = "";
@@ -511,13 +542,17 @@ const filteredPoems =
     poems.filter(poem => {
 
         return (
+
             poem.title
                 .toLowerCase()
                 .includes(search)
+
             ||
+
             poem.content
                 .toLowerCase()
                 .includes(search)
+
         );
 
     });
@@ -527,7 +562,9 @@ noteCount.textContent =
     filteredPoems.length;
 
 
-if (filteredPoems.length === 0) {
+if (
+    filteredPoems.length === 0
+) {
 
     notesList.innerHTML = `
 
@@ -542,63 +579,75 @@ if (filteredPoems.length === 0) {
 }
 
 
-filteredPoems.forEach(poem => {
+filteredPoems.forEach(
+    poem => {
 
-    const item =
-        document.createElement("div");
+        const item =
+            document.createElement(
+                "div"
+            );
 
 
-    item.className =
-        "note-item";
+        item.className =
+            "note-item";
 
 
-    if (
-        selectedPoem &&
-        selectedPoem.filename ===
-            poem.filename
-    ) {
+        if (
+            selectedPoem &&
+            selectedPoem.filename ===
+                poem.filename
+        ) {
 
-        item.classList.add(
-            "selected"
+            item.classList.add(
+                "selected"
+            );
+
+        }
+
+
+        const preview =
+            getPreview(
+                poem.content
+            );
+
+
+        item.innerHTML = `
+
+            <div class="note-item-title">
+                ${escapeHTML(
+                    poem.title
+                )}
+            </div>
+
+            <div class="note-item-preview">
+                ${escapeHTML(
+                    preview
+                )}
+            </div>
+
+            <div class="note-item-date">
+                ${escapeHTML(
+                    formatDate(
+                        poem.date
+                    )
+                )}
+            </div>
+
+        `;
+
+
+        item.addEventListener(
+            "click",
+            () => openPoem(poem)
+        );
+
+
+        notesList.appendChild(
+            item
         );
 
     }
-
-
-    const preview =
-        getPreview(
-            poem.content
-        );
-
-
-    item.innerHTML = `
-
-        <div class="note-item-title">
-            ${escapeHTML(poem.title)}
-        </div>
-
-        <div class="note-item-preview">
-            ${escapeHTML(preview)}
-        </div>
-
-        <div class="note-item-date">
-            ${escapeHTML(
-                formatDate(poem.date)
-            )}
-        </div>
-
-    `;
-
-
-    item.addEventListener(
-        "click",
-        () => openPoem(poem)
-    );
-
-
-    notesList.appendChild(item);
-
-});
+);
 ```
 
 }
@@ -611,13 +660,15 @@ function openPoem(poem) {
 
 ```
 if (!poem) {
+
     return;
+
 }
 
 
 /*
-   If we're already looking at this poem,
-   don't create another history entry.
+   Don't create another history entry
+   if the poem is already open.
 */
 
 if (
@@ -625,13 +676,11 @@ if (
     selectedPoem.filename ===
         poem.filename
 ) {
+
     return;
+
 }
 
-
-/*
-   Add a browser history entry.
-*/
 
 const url =
     new URL(
@@ -655,7 +704,9 @@ history.pushState(
 );
 
 
-displayPoem(poem);
+displayPoem(
+    poem
+);
 ```
 
 }
@@ -725,8 +776,8 @@ renderNotesList(
 
 
 /*
-   Mobile:
-   switch from list to poem.
+   On mobile, hide the notes list
+   and show the poem.
 */
 
 if (
@@ -754,10 +805,6 @@ addHistory = true
 ```
 selectedPoem = null;
 
-
-/*
-   Remove ?poem=... from URL.
-*/
 
 const url =
     new URL(
@@ -793,28 +840,15 @@ if (addHistory) {
 }
 
 
-/*
-   Hide poem.
-*/
-
 note
     .classList
     .add("hidden");
 
 
-/*
-   Show front page.
-*/
-
 emptyState
     .classList
     .remove("hidden");
 
-
-/*
-   Return to the notes list
-   on mobile.
-*/
 
 document
     .querySelector(".app")
@@ -833,17 +867,20 @@ renderNotesList(
 MOBILE BACK BUTTON
 ========================================= */
 
-mobileBackButton.addEventListener(
-"click",
-() => {
+if (mobileBackButton) {
 
 ```
-    showFrontPage(true);
+mobileBackButton.addEventListener(
+    "click",
+    () => {
+
+        showFrontPage(true);
+
+    }
+);
+```
 
 }
-```
-
-);
 
 /* =========================================
 BROWSER BACK / FORWARD
@@ -879,7 +916,9 @@ window.addEventListener(
 
     if (poem) {
 
-        displayPoem(poem);
+        displayPoem(
+            poem
+        );
 
     } else {
 
@@ -896,19 +935,22 @@ window.addEventListener(
 SEARCH
 ========================================= */
 
-searchInput.addEventListener(
-"input",
-event => {
+if (searchInput) {
 
 ```
-    renderNotesList(
-        event.target.value
-    );
+searchInput.addEventListener(
+    "input",
+    event => {
+
+        renderNotesList(
+            event.target.value
+        );
+
+    }
+);
+```
 
 }
-```
-
-);
 
 /* =========================================
 PREVIEW
