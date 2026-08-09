@@ -1,1 +1,0 @@
-{"scripts":{"start":"node server.js"},"dependencies":{"@octokit/rest":"^21.0.2","cookie-session":"^2.1.0","express":"^5.1.0"},"engines":{"node":">=20"}}
