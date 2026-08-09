@@ -1,44 +1,34 @@
 ---
-title: Ambiguity
+title: Synesthesia
 date: 2026-08-09
 ---
 
-Ambiguity
-Sounds a bit like you and me.
-A silent spark, an almost-glow,
-A surge above, a drift below.
+When sounds become what words cannot say,
+And colors speak what speech cannot convey;
+This quiet chasm between you and me,
+Fades in soft hues and the hum of a Mi.
 
-Stuck in what comes after hi and hello, 
-Cruising the middle of highs and low. 
-Almost to something, but something comes undone .
-Where almost is almost enough, but never becomes one.
+Do desolate dreams drift down to you,
+Restless rain recalls what we once knew;
+My muted melodies meet your memory,
+Fading, I find your face in every frequency.
 
-If words are played, then are words feelings? 
-Where losing means less, and winning means deceiving. 
-What we gain, we lose, and what we lose, we claim, 
-Then who really wins when we both leave the game?
+Softly, some songs still speak of you,
+Lavender light leaves me longing too;
+Tender tones tell truths time cannot take,
+Down the distance, your echoes delicately flow.
 
-Are we knot-tied, or tied in knot?
-Are we lost thoughts, or thoughts we forgot?
-Are we bound to bleed, or is bleeding bound?
-To the light we lose, or the loss we’ve found?
+Down dimmed roads, I deliver songs we never shared,
+Reminders of our laughter reverb in the air;
+Mist on distant windows mirrors what I feel,
+Faintly, every feeble whisper makes the distance real.
 
-Is space held fast, or held by will?
-Do we bend the path, or does it bend us still?
-Do we fear the end, or does end fear grace?
-In the tracks we trace to a traceless place?
+Solace comes in verses where your memories stay,
+Latent little relics linger through the days;
+Tired of the silence, yet terrified to let it go,
+Down the darkening boulevard, your delicate shadow shows.
 
-Do we speak to stay, or stay to speak?
-To the solid truths that make us weak?
-Are we carved in stone, or is stone carved deep?
-By words we were too afraid to keep?
-
-So here we hang, suspended, free,
-In the quiet gray of what might be.
-Not quite a ghost, not quite a flame,
-Two endless shapes without a name.
-
-Perhaps the nameless things are still the same,
-Still burning softly though we lack the name. 
-For what we cannot hold may still be real, 
-And what cannot be named may be what we feel.
+As the music reaches its end, and the curtains fall,
+The clasp of applause resounds through every corner and wall.
+And the audience will scream for a final encore,
+But some songs are meant to end, though I admit—I’d still ask for more.
