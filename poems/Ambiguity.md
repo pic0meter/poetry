@@ -1,6 +1,7 @@
 ---
 title: Ambiguity
 date: 2026-08-09
+background: url('./assets/droplets.gif') center / cover repeat
 ---
 
 Ambiguity
