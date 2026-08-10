@@ -1,7 +1,7 @@
 ---
 title: Synesthesia
 date: 2026-08-09
-background: linear-gradient(135deg, #fffbf0 0%, #fdf5e6 100%)
+background: url('./assets/music.gif') center / cover repeat
 ---
 
 When sounds become what words cannot say,
