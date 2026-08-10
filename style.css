@@ -55,6 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    z-index: 2;
 }
 
 .sidebar-header {
@@ -201,7 +202,7 @@ body {
 }
 
 
-/* MAIN NOTE AREA */
+/* MAIN NOTE AREA & GIF BACKGROUND DISPLAY */
 
 .note-area {
     flex: 1;
@@ -209,8 +210,8 @@ body {
     overflow-y: auto;
     background: #ffffff;
     transition: background 0.3s ease;
-    
-    /* Settings for local image & GIF backgrounds */
+
+    /* Background image/GIF cover handling */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -249,10 +250,23 @@ body {
     font-size: 14px;
 }
 
+
+/* POEM CARD WITH FROSTED GLASS / BLUR EFFECT */
+
 .note {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 65px 80px 100px;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 50px 60px 80px;
+
+    /* Frosted glass overlay over background GIF */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Clean rounded card borders */
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 .hidden {
@@ -285,7 +299,7 @@ body {
 }
 
 .note-date {
-    color: #8b8b8f;
+    color: #6e6e73;
     font-size: 13px;
     margin-top: 8px;
 }
@@ -294,22 +308,22 @@ body {
     width: 34px;
     height: 34px;
     border: none;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.06);
     border-radius: 50%;
-    color: #555;
+    color: #333;
     font-size: 19px;
     cursor: pointer;
     transition: background 0.2s ease;
 }
 
 .github-button:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.12);
 }
 
 .note-divider {
     height: 1px;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 30px 0 40px;
+    background: rgba(0, 0, 0, 0.12);
+    margin: 25px 0 35px;
 }
 
 
@@ -322,7 +336,7 @@ body {
         serif;
     font-size: 19px;
     line-height: 1.9;
-    color: #292929;
+    color: #1d1d1f;
     max-width: 720px;
 }
 
@@ -364,10 +378,10 @@ body {
 }
 
 .note-content blockquote {
-    border-left: 3px solid #d5d5d5;
+    border-left: 3px solid #b0b0b5;
     margin: 20px 0;
     padding-left: 20px;
-    color: #666;
+    color: #555;
 }
 
 .note-content ul,
@@ -455,6 +469,7 @@ body {
         z-index: 10;
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         padding: 15px 20px;
         font-size: 16px;
         color: #333;
@@ -464,11 +479,12 @@ body {
     }
 
     .note {
-        padding: 35px 25px 80px;
+        margin: 20px 15px 60px;
+        padding: 30px 20px 50px;
     }
 
     .note-header h1 {
-        font-size: 27px;
+        font-size: 26px;
     }
 
     .note-content {
