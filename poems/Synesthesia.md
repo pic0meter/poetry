@@ -30,6 +30,6 @@ Tired of the silence, yet terrified to let it go,
 Down the darkening boulevard, your delicate shadow shows.
 
 As the music reaches its end, and the curtains fall,
-The clasp of applause resounds through every corner and wall.
+The clasp of applause resounds through every wall.
 And the audience will scream for a final encore,
 But some songs are meant to end, though I admit—I’d still ask for more.
