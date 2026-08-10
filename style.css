@@ -260,8 +260,8 @@ body {
 
     /* Frosted glass overlay over background GIF */
     background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     /* Clean rounded card borders */
     border-radius: 18px;
