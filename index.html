@@ -1,179 +1,104 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<meta charset="UTF-8">
+    <title>Poems — Notes</title>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <link rel="stylesheet" href="style.css">
 
-<title>Poems — Notes</title>
+    <!-- Markdown renderer -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-<link rel="stylesheet" href="style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
-```
-
+    <!-- HTML sanitizer -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 </head>
 
 <body>
 
 <div class="app">
 
-```
-<!-- SIDEBAR -->
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-<aside class="sidebar">
-
-    <div class="sidebar-header">
-
-        <div class="window-buttons">
-
-            <span class="window-button red"></span>
-            <span class="window-button yellow"></span>
-            <span class="window-button green"></span>
-
+        <div class="sidebar-header">
+            <div class="window-buttons">
+                <span class="window-button red"></span>
+                <span class="window-button yellow"></span>
+                <span class="window-button green"></span>
+            </div>
         </div>
 
-    </div>
-
-
-    <div class="sidebar-title">
-
-        <span class="notes-icon">📝</span>
-
-        <span>Notes</span>
-
-    </div>
-
-
-    <div class="search-container">
-
-        <span class="search-icon">⌕</span>
-
-        <input
-            type="search"
-            id="searchInput"
-            placeholder="Search"
-            autocomplete="off"
-        >
-
-    </div>
-
-
-    <div class="notes-heading">
-
-        <span>All Notes</span>
-
-        <span id="noteCount"></span>
-
-    </div>
-
-
-    <div id="notesList" class="notes-list">
-
-        <div class="loading">
-            Loading poems…
+        <div class="sidebar-title">
+            <span class="notes-icon">📝</span>
+            <span>Notes</span>
         </div>
 
-    </div>
-
-</aside>
-
-
-
-<!-- MAIN NOTE AREA -->
-
-<main class="note-area">
-
-    <!-- Mobile back button -->
-
-    <button
-        id="mobileBackButton"
-        class="mobile-back-button"
-        type="button"
-    >
-        ‹&nbsp; Notes
-    </button>
-
-
-    <!-- Front page / empty state -->
-
-    <div id="emptyState" class="empty-state">
-
-        <div class="empty-icon">
-            📝
+        <div class="search-container">
+            <span class="search-icon">⌕</span>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search"
+                autocomplete="off"
+            >
         </div>
 
-        <h2>
-            Select a poem
-        </h2>
+        <div class="notes-heading">
+            <span>All Notes</span>
+            <span id="noteCount"></span>
+        </div>
 
-        <p>
-            Choose a poem from the sidebar.
-        </p>
+        <div id="notesList" class="notes-list">
+            <div class="loading">
+                Loading poems…
+            </div>
+        </div>
 
-    </div>
+    </aside>
 
 
+    <!-- MAIN NOTE -->
+    <main class="note-area">
 
-    <!-- Selected poem -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h2>Select a poem</h2>
+            <p>Choose a poem from the sidebar.</p>
+        </div>
 
-    <article
-        id="note"
-        class="note hidden"
-    >
+        <article id="note" class="note hidden">
 
-        <header class="note-header">
+            <header class="note-header">
 
-            <div class="note-info">
-
-                <h1 id="noteTitle"></h1>
-
-                <div
-                    id="noteDate"
-                    class="note-date">
+                <div class="note-info">
+                    <h1 id="noteTitle"></h1>
+                    <div id="noteDate" class="note-date"></div>
                 </div>
 
-            </div>
+                <button
+                    id="githubButton"
+                    class="github-button"
+                    title="View this poem on GitHub"
+                    aria-label="View this poem on GitHub"
+                >
+                    ↗
+                </button>
 
+            </header>
 
-            <button
-                id="githubButton"
-                class="github-button"
-                title="View this poem on GitHub"
-                aria-label="View this poem on GitHub"
-            >
-                ↗
-            </button>
+            <div class="note-divider"></div>
 
-        </header>
+            <div id="noteContent" class="note-content"></div>
 
+        </article>
 
-        <div class="note-divider"></div>
-
-
-        <div
-            id="noteContent"
-            class="note-content">
-        </div>
-
-    </article>
-
-</main>
-```
+    </main>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
