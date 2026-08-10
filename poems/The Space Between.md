@@ -1,45 +1,46 @@
 ---
-title: Chiasmus
-date: 2026-08-09
-background: url('./assets/droplets.gif') center / cover repeat
+title: The Space Between
+date: 2026-08-10
+background: url('./assets/space.jpg') center / cover repeat
 ---
 
-Ambiguity
-Sounds a bit like you and me.
-A silent spark, an almost-glow,
-A surge above, a drift below.
+As the midnight hour tolling, deafening,
+The nightingale breathes a melody, unsettling-
+heart that pulses to the wistful melody
+Of heaven’s winged messenger, laden with agony
 
-Stuck in what comes after hi and hello, 
-Cruising the middle of highs and low. 
-Almost to something, but something comes undone .
-Where almost is almost enough, but never becomes one.
+Standing in shadow, phantom of the night,
+Bathed beneath the crisp, ethereal light—
+Speak once again within this dark domain,
+Bright angel, soothe this heavy heart that bleeds in vain.
 
-If words are played, then are words feelings? 
-Where losing means less, and winning means deceiving. 
-What we gain, we lose, and what we lose, we claim, 
-Then who really wins when we both leave the game?
+High on the velvet balcony, can you see,
+A desperate heart that reaches out to thee?
+Across the breathless dark, can you hear,
+My silent pleas, my desolate despair?
 
-Are we knot-tied, or tied in knot?
-Are we lost thoughts, or thoughts we forgot?
-Are we bound to bleed, or is bleeding bound?
-To the light we lose, or the loss we’ve found?
+In the deep night sky, you reign, a blinding sun,
+Adored by every silver star, surpassed by none.
+Unbeknownst to the moon, mysterious to the divine,
+Far beyond the desperate hands of this mortal design.
 
-Is space held fast, or held by will?
-Do we bend the path, or does it bend us still?
-Do we fear the end, or does end fear grace?
-In the tracks we trace to a traceless place?
+Had I the words to bridge this silent breach,
+Wherefore are you so distant from my reach?
+The gap you let winding, pulls the night into
+The quiet space between the moon and you.
 
-Do we speak to stay, or stay to speak?
-To the solid truths that make us weak?
-Are we carved in stone, or is stone carved deep?
-By words we were too afraid to keep?
+Pity, for I can only gaze across this empty space
+For no hand nor foot, nor arm, not even my face;
+Nor any earthly part of me has language to convey
+The devotion that I feel, the prayers that I pray.
 
-So here we hang, suspended, free,
-In the quiet gray of what might be.
-Not quite a ghost, not quite a flame,
-Two endless shapes without a name.
+Is this enough for me, to view you from afar?
+Where only our shadows meet, carrying echoes of who we are.
+Where the whistling winds speak my unspoken sincerity,
+And these sacred ground hears the whisper of my serenity.
 
-Perhaps the nameless things are still the same,
-Still burning softly though we lack the name. 
-For what we cannot hold may still be real, 
+And as the moon rests, and the sun brings the dawn,
+Where everything is at peace, and my longing carries on.
+May this orchard of hope continue to bloom,
+Even in the silence where memories make room. real, 
 And what cannot be named may be what we feel.
