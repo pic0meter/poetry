@@ -259,7 +259,7 @@ body {
     padding: 50px 60px 80px;
 
     /* Frosted glass overlay over background GIF */
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
