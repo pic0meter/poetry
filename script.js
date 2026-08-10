@@ -16,6 +16,7 @@ const noteTitle = document.getElementById("noteTitle");
 const noteDate = document.getElementById("noteDate");
 const noteContent = document.getElementById("noteContent");
 const githubButton = document.getElementById("githubButton");
+const mobileBackButton = document.getElementById("mobileBackButton");
 
 let poems = [];
 let selectedPoem = null;
@@ -29,17 +30,6 @@ function getRepositoryInfo() {
 
     const hostname = window.location.hostname;
     const pathname = window.location.pathname;
-
-    /*
-       Example:
-
-       pic0meter.github.io/poetry/
-
-       becomes:
-
-       owner = pic0meter
-       repo  = poetry
-    */
 
     if (!hostname.endsWith(".github.io")) {
         return null;
@@ -63,7 +53,6 @@ function getRepositoryInfo() {
         repo: parts[0]
     };
 }
-
 
 const repository = getRepositoryInfo();
 
@@ -118,7 +107,21 @@ async function loadPoems() {
 
         renderNotesList();
 
-        if (poems.length > 0) {
+        // Handle URL direct links (e.g., ?poem=poem1.md)
+        const urlParams = new URLSearchParams(window.location.search);
+        const poemParam = urlParams.get("poem");
+
+        if (poemParam) {
+            const requestedPoem = poems.find(p => p.filename === poemParam);
+            if (requestedPoem) {
+                openPoem(requestedPoem);
+                return;
+            }
+        }
+
+        // On desktop (> 700px), open the first poem by default.
+        // On mobile (<= 700px), remain on the list view.
+        if (poems.length > 0 && window.innerWidth > 700) {
             openPoem(poems[0]);
         }
 
@@ -398,11 +401,6 @@ function openPoem(poem) {
     noteDate.textContent =
         formatDate(poem.date);
 
-    /*
-       Marked converts Markdown to HTML.
-       DOMPurify removes unsafe HTML.
-    */
-
     const rendered =
         marked.parse(poem.content, {
             breaks: true,
@@ -422,20 +420,14 @@ function openPoem(poem) {
 
     renderNotesList(searchInput.value);
 
-    /*
-       On phones, show the poem.
-    */
-
+    // On phones, switch to single-note view
     if (window.innerWidth <= 700) {
         document
             .querySelector(".app")
             .classList.add("show-note");
     }
 
-    /*
-       Update browser URL without reloading.
-    */
-
+    // Update browser URL without page reload
     const url =
         new URL(window.location.href);
 
@@ -453,6 +445,23 @@ function openPoem(poem) {
 
 
 /* =========================================
+   MOBILE BACK NAVIGATION
+========================================= */
+
+function closePoemMobile() {
+    document.querySelector(".app").classList.remove("show-note");
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("poem");
+    history.replaceState({}, "", url);
+}
+
+if (mobileBackButton) {
+    mobileBackButton.addEventListener("click", closePoemMobile);
+}
+
+
+/* =========================================
    SEARCH
 ========================================= */
 
@@ -465,7 +474,7 @@ searchInput.addEventListener(
 
 
 /* =========================================
-   PREVIEW
+   PREVIEW & ESCAPING
 ========================================= */
 
 function getPreview(markdown) {
@@ -477,11 +486,6 @@ function getPreview(markdown) {
         .trim()
         .substring(0, 100);
 }
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
 
 function escapeHTML(text) {
 
@@ -495,7 +499,7 @@ function escapeHTML(text) {
 
 
 /* =========================================
-   ERRORS
+   ERRORS & INITIALIZATION
 ========================================= */
 
 function showError(message) {
@@ -507,7 +511,6 @@ function showError(message) {
     `;
 }
 
-
 function showEmptyRepository() {
 
     notesList.innerHTML = `
@@ -516,10 +519,5 @@ function showEmptyRepository() {
         </div>
     `;
 }
-
-
-/* =========================================
-   START
-========================================= */
 
 loadPoems();
