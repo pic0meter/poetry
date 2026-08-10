@@ -42,5 +42,4 @@ And these sacred ground hears the whisper of my serenity.
 And as the moon rests, and the sun brings the dawn,
 Where everything is at peace, and my longing carries on.
 May this orchard of hope continue to bloom,
-Even in the silence where memories make room. real, 
-And what cannot be named may be what we feel.
+Even in the silence where memories make room.
