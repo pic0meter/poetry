@@ -36,7 +36,7 @@ body {
 }
 
 
-/* APP */
+/* APP CONTAINER */
 
 .app {
     display: flex;
@@ -207,7 +207,8 @@ body {
     flex: 1;
     height: 100vh;
     overflow-y: auto;
-    background: white;
+    background: #ffffff;
+    transition: background 0.3s ease;
 }
 
 .mobile-back-button {
@@ -287,20 +288,21 @@ body {
     width: 34px;
     height: 34px;
     border: none;
-    background: #f2f2f4;
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     color: #555;
     font-size: 19px;
     cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .github-button:hover {
-    background: #e5e5e7;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .note-divider {
     height: 1px;
-    background: #e5e5e7;
+    background: rgba(0, 0, 0, 0.1);
     margin: 30px 0 40px;
 }
 
@@ -368,7 +370,7 @@ body {
 }
 
 
-/* LOADING / ERROR */
+/* LOADING & ERRORS */
 
 .loading,
 .error-message,
@@ -403,7 +405,7 @@ body {
 }
 
 
-/* MOBILE */
+/* MOBILE RESPONSIVENESS */
 
 @media (max-width: 700px) {
 
@@ -445,13 +447,13 @@ body {
         position: sticky;
         top: 0;
         z-index: 10;
-        background: rgba(255, 255, 255, 0.92);
+        background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(12px);
         padding: 15px 20px;
         font-size: 16px;
-        color: #555;
+        color: #333;
         border: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         cursor: pointer;
     }
 
