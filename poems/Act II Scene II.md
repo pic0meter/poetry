@@ -1,5 +1,5 @@
 ---
-title: The Space Between
+title: Act II, Scene II
 date: 2026-08-10
 background: url('./assets/space.jpg') center / cover repeat
 ---
