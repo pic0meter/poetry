@@ -1,7 +1,7 @@
 ---
 title: Act II, Scene II
 date: 2026-08-10
-background: url('./assets/space.jpg') center / cover repeat
+background: url('./assets/night-sky.gif') center / cover repeat
 ---
 
 As the midnight hour tolling, deafening,
