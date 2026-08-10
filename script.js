@@ -1,1066 +1,525 @@
 /* =========================================
-POETRY NOTES
-GitHub Pages + Markdown
+   POETRY NOTES
+   GitHub Pages + Markdown
 ========================================= */
 
 const POEMS_FOLDER = "poems";
 
-const notesList =
-document.getElementById("notesList");
+const notesList = document.getElementById("notesList");
+const noteCount = document.getElementById("noteCount");
+const searchInput = document.getElementById("searchInput");
 
-const noteCount =
-document.getElementById("noteCount");
+const emptyState = document.getElementById("emptyState");
+const note = document.getElementById("note");
 
-const searchInput =
-document.getElementById("searchInput");
-
-const emptyState =
-document.getElementById("emptyState");
-
-const note =
-document.getElementById("note");
-
-const noteTitle =
-document.getElementById("noteTitle");
-
-const noteDate =
-document.getElementById("noteDate");
-
-const noteContent =
-document.getElementById("noteContent");
-
-const githubButton =
-document.getElementById("githubButton");
-
-const mobileBackButton =
-document.getElementById("mobileBackButton");
+const noteTitle = document.getElementById("noteTitle");
+const noteDate = document.getElementById("noteDate");
+const noteContent = document.getElementById("noteContent");
+const githubButton = document.getElementById("githubButton");
 
 let poems = [];
-
 let selectedPoem = null;
 
+
 /* =========================================
-GITHUB REPOSITORY
+   DETERMINE GITHUB REPOSITORY
 ========================================= */
 
 function getRepositoryInfo() {
 
-```
-const hostname =
-    window.location.hostname;
+    const hostname = window.location.hostname;
+    const pathname = window.location.pathname;
 
-const pathname =
-    window.location.pathname;
+    /*
+       Example:
 
+       pic0meter.github.io/poetry/
 
-if (!hostname.endsWith(".github.io")) {
+       becomes:
 
-    return null;
+       owner = pic0meter
+       repo  = poetry
+    */
 
-}
+    if (!hostname.endsWith(".github.io")) {
+        return null;
+    }
 
+    const owner = hostname.replace(".github.io", "");
 
-const owner =
-    hostname.replace(".github.io", "");
-
-
-const parts =
-    pathname
+    const parts = pathname
         .split("/")
         .filter(Boolean);
 
-
-if (parts.length === 0) {
+    if (parts.length === 0) {
+        return {
+            owner,
+            repo: `${owner}.github.io`
+        };
+    }
 
     return {
-        owner: owner,
-        repo: `${owner}.github.io`
+        owner,
+        repo: parts[0]
     };
-
 }
 
 
-return {
-    owner: owner,
-    repo: parts[0]
-};
-```
+const repository = getRepositoryInfo();
 
-}
-
-const repository =
-getRepositoryInfo();
 
 /* =========================================
-LOAD POEMS
+   LOAD POEMS
 ========================================= */
 
 async function loadPoems() {
 
-```
-if (!repository) {
-
-    showError(
-        "This website needs to be hosted on GitHub Pages."
-    );
-
-    return;
-
-}
-
-
-const apiURL =
-    `https://api.github.com/repos/` +
-    `${repository.owner}/` +
-    `${repository.repo}/contents/` +
-    `${POEMS_FOLDER}`;
-
-
-try {
-
-    const response =
-        await fetch(apiURL);
-
-
-    if (!response.ok) {
-
-        throw new Error(
-            `GitHub returned ${response.status}`
+    if (!repository) {
+        showError(
+            "This website needs to be hosted on GitHub Pages."
         );
-
-    }
-
-
-    const files =
-        await response.json();
-
-
-    const markdownFiles =
-        files.filter(file =>
-
-            file.type === "file" &&
-
-            file.name
-                .toLowerCase()
-                .endsWith(".md")
-
-        );
-
-
-    if (markdownFiles.length === 0) {
-
-        showEmptyRepository();
-
         return;
-
     }
 
+    const apiURL =
+        `https://api.github.com/repos/` +
+        `${repository.owner}/` +
+        `${repository.repo}/contents/${POEMS_FOLDER}`;
 
-    const loadedPoems =
-        await Promise.all(
-            markdownFiles.map(
-                loadPoem
-            )
+    try {
+
+        const response = await fetch(apiURL);
+
+        if (!response.ok) {
+            throw new Error(
+                `GitHub returned ${response.status}`
+            );
+        }
+
+        const files = await response.json();
+
+        const markdownFiles = files.filter(file =>
+            file.type === "file" &&
+            file.name.toLowerCase().endsWith(".md")
         );
 
+        if (markdownFiles.length === 0) {
+            showEmptyRepository();
+            return;
+        }
 
-    poems =
-        loadedPoems
+        const loadedPoems = await Promise.all(
+            markdownFiles.map(loadPoem)
+        );
+
+        poems = loadedPoems
             .filter(Boolean)
             .sort(sortNewestFirst);
 
+        renderNotesList();
 
-    renderNotesList();
-
-
-    /*
-       The homepage does NOT automatically
-       open the newest poem.
-
-       A poem is only opened automatically
-       when ?poem=filename.md exists.
-    */
-
-    const requestedPoem =
-        new URLSearchParams(
-            window.location.search
-        ).get("poem");
-
-
-    if (requestedPoem) {
-
-        const poemFromURL =
-            poems.find(
-                poem =>
-                    poem.filename ===
-                    requestedPoem
-            );
-
-
-        if (poemFromURL) {
-
-            displayPoem(
-                poemFromURL
-            );
-
+        if (poems.length > 0) {
+            openPoem(poems[0]);
         }
 
+    } catch (error) {
+
+        console.error(error);
+
+        showError(
+            "Unable to load the poems. " +
+            "Please check that the repository is public " +
+            "and the poems folder exists."
+        );
     }
-
-
-} catch (error) {
-
-    console.error(error);
-
-
-    showError(
-        "Unable to load the poems. " +
-        "Please check that the repository is public " +
-        "and the poems folder exists."
-    );
-
 }
-```
 
-}
 
 /* =========================================
-LOAD INDIVIDUAL POEM
+   LOAD INDIVIDUAL POEM
 ========================================= */
 
 async function loadPoem(file) {
 
-```
-try {
+    try {
 
-    const response =
-        await fetch(
-            file.download_url
-        );
+        const response = await fetch(file.download_url);
 
+        if (!response.ok) {
+            throw new Error(
+                `Unable to load ${file.name}`
+            );
+        }
 
-    if (!response.ok) {
+        const markdown = await response.text();
 
-        throw new Error(
-            `Unable to load ${file.name}`
-        );
+        const metadata = parseFrontMatter(markdown);
 
+        return {
+            filename: file.name,
+            path: file.path,
+            raw: markdown,
+            content: metadata.content,
+            title: metadata.title || filenameToTitle(file.name),
+            date: metadata.date || "",
+            dateObject: parseDate(metadata.date),
+            githubURL:
+                `https://github.com/${repository.owner}/` +
+                `${repository.repo}/blob/main/${file.path}`
+        };
+
+    } catch (error) {
+
+        console.error(error);
+
+        return null;
     }
-
-
-    const markdown =
-        await response.text();
-
-
-    const metadata =
-        parseFrontMatter(
-            markdown
-        );
-
-
-    return {
-
-        filename:
-            file.name,
-
-        path:
-            file.path,
-
-        raw:
-            markdown,
-
-        content:
-            metadata.content,
-
-        title:
-            metadata.title ||
-            filenameToTitle(
-                file.name
-            ),
-
-        date:
-            metadata.date || "",
-
-        dateObject:
-            parseDate(
-                metadata.date
-            ),
-
-        githubURL:
-            `https://github.com/` +
-            `${repository.owner}/` +
-            `${repository.repo}/blob/main/` +
-            `${file.path}`
-
-    };
-
-
-} catch (error) {
-
-    console.error(error);
-
-    return null;
-
 }
-```
 
-}
 
 /* =========================================
-FRONT MATTER
+   FRONT MATTER
 ========================================= */
 
 function parseFrontMatter(markdown) {
 
-```
-const match =
-    markdown.match(
+    const match = markdown.match(
         /^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/m
     );
 
+    if (!match) {
 
-if (!match) {
+        return {
+            title: "",
+            date: "",
+            content: markdown.trim()
+        };
+    }
 
-    return {
+    const frontMatter = match[1];
+    const content = match[2].trim();
 
-        title: "",
+    let title = "";
+    let date = "";
 
-        date: "",
+    frontMatter.split("\n").forEach(line => {
 
-        content:
-            markdown.trim()
-
-    };
-
-}
-
-
-const frontMatter =
-    match[1];
-
-const content =
-    match[2].trim();
-
-
-let title = "";
-
-let date = "";
-
-
-frontMatter
-    .split("\n")
-    .forEach(line => {
-
-        const separator =
-            line.indexOf(":");
-
+        const separator = line.indexOf(":");
 
         if (separator === -1) {
-
             return;
-
         }
 
-
         const key =
-            line
-                .substring(
-                    0,
-                    separator
-                )
+            line.substring(0, separator)
                 .trim()
                 .toLowerCase();
 
-
         const value =
-            line
-                .substring(
-                    separator + 1
-                )
+            line.substring(separator + 1)
                 .trim()
-                .replace(
-                    /^["']|["']$/g,
-                    ""
-                );
-
+                .replace(/^["']|["']$/g, "");
 
         if (key === "title") {
-
             title = value;
-
         }
-
 
         if (key === "date") {
-
             date = value;
-
         }
-
     });
 
-
-return {
-
-    title,
-    date,
-    content
-
-};
-```
-
+    return {
+        title,
+        date,
+        content
+    };
 }
 
+
 /* =========================================
-FILENAME → TITLE
+   TITLE FROM FILENAME
 ========================================= */
 
 function filenameToTitle(filename) {
 
-```
-return filename
-
-    .replace(
-        /\.md$/i,
-        ""
-    )
-
-    .replace(
-        /[-_]+/g,
-        " "
-    )
-
-    .replace(
-        /\b\w/g,
-        letter =>
+    return filename
+        .replace(/\.md$/i, "")
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, letter =>
             letter.toUpperCase()
-    );
-```
-
+        );
 }
 
+
 /* =========================================
-DATE
+   DATE
 ========================================= */
 
 function parseDate(dateString) {
 
-```
-if (!dateString) {
+    if (!dateString) {
+        return new Date(0);
+    }
 
-    return new Date(0);
+    const date = new Date(dateString);
 
+    if (isNaN(date.getTime())) {
+        return new Date(0);
+    }
+
+    return date;
 }
 
-
-const date =
-    new Date(dateString);
-
-
-if (
-    isNaN(
-        date.getTime()
-    )
-) {
-
-    return new Date(0);
-
-}
-
-
-return date;
-```
-
-}
 
 function formatDate(dateString) {
 
-```
-if (!dateString) {
-
-    return "";
-
-}
-
-
-const date =
-    parseDate(dateString);
-
-
-if (
-    date.getTime() === 0
-) {
-
-    return dateString;
-
-}
-
-
-return date.toLocaleDateString(
-    "en-US",
-    {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+    if (!dateString) {
+        return "";
     }
-);
-```
 
+    const date = parseDate(dateString);
+
+    if (date.getTime() === 0) {
+        return dateString;
+    }
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    );
 }
+
 
 /* =========================================
-NEWEST FIRST
+   NEWEST FIRST
 ========================================= */
 
 function sortNewestFirst(a, b) {
 
-```
-return b.dateObject - a.dateObject;
-```
-
+    return b.dateObject - a.dateObject;
 }
 
+
 /* =========================================
-SIDEBAR
+   RENDER SIDEBAR
 ========================================= */
 
-function renderNotesList(
-filter = ""
-) {
+function renderNotesList(filter = "") {
 
-```
-notesList.innerHTML = "";
+    notesList.innerHTML = "";
 
+    const search =
+        filter.trim().toLowerCase();
 
-const search =
-    filter
-        .trim()
-        .toLowerCase();
-
-
-const filteredPoems =
-    poems.filter(poem => {
+    const filteredPoems = poems.filter(poem => {
 
         return (
-
-            poem.title
-                .toLowerCase()
-                .includes(search)
-
-            ||
-
-            poem.content
-                .toLowerCase()
-                .includes(search)
-
+            poem.title.toLowerCase().includes(search) ||
+            poem.content.toLowerCase().includes(search)
         );
 
     });
 
+    noteCount.textContent =
+        filteredPoems.length;
 
-noteCount.textContent =
-    filteredPoems.length;
+    if (filteredPoems.length === 0) {
 
+        notesList.innerHTML = `
+            <div class="no-results">
+                No poems found.
+            </div>
+        `;
 
-if (
-    filteredPoems.length === 0
-) {
+        return;
+    }
 
-    notesList.innerHTML = `
-
-        <div class="no-results">
-            No poems found.
-        </div>
-
-    `;
-
-    return;
-
-}
-
-
-filteredPoems.forEach(
-    poem => {
+    filteredPoems.forEach(poem => {
 
         const item =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        item.className =
-            "note-item";
-
+        item.className = "note-item";
 
         if (
             selectedPoem &&
-            selectedPoem.filename ===
-                poem.filename
+            selectedPoem.filename === poem.filename
         ) {
-
-            item.classList.add(
-                "selected"
-            );
-
+            item.classList.add("selected");
         }
 
-
         const preview =
-            getPreview(
-                poem.content
-            );
-
+            getPreview(poem.content);
 
         item.innerHTML = `
-
             <div class="note-item-title">
-                ${escapeHTML(
-                    poem.title
-                )}
+                ${escapeHTML(poem.title)}
             </div>
 
             <div class="note-item-preview">
-                ${escapeHTML(
-                    preview
-                )}
+                ${escapeHTML(preview)}
             </div>
 
             <div class="note-item-date">
                 ${escapeHTML(
-                    formatDate(
-                        poem.date
-                    )
+                    formatDate(poem.date)
                 )}
             </div>
-
         `;
-
 
         item.addEventListener(
             "click",
             () => openPoem(poem)
         );
 
-
-        notesList.appendChild(
-            item
-        );
-
-    }
-);
-```
-
+        notesList.appendChild(item);
+    });
 }
 
+
 /* =========================================
-OPEN POEM
+   OPEN POEM
 ========================================= */
 
 function openPoem(poem) {
 
-```
-if (!poem) {
+    selectedPoem = poem;
 
-    return;
+    emptyState.classList.add("hidden");
+    note.classList.remove("hidden");
 
-}
+    noteTitle.textContent = poem.title;
 
+    noteDate.textContent =
+        formatDate(poem.date);
 
-/*
-   Don't create another history entry
-   if the poem is already open.
-*/
+    /*
+       Marked converts Markdown to HTML.
+       DOMPurify removes unsafe HTML.
+    */
 
-if (
-    selectedPoem &&
-    selectedPoem.filename ===
-        poem.filename
-) {
-
-    return;
-
-}
-
-
-const url =
-    new URL(
-        window.location.href
-    );
-
-
-url.searchParams.set(
-    "poem",
-    poem.filename
-);
-
-
-history.pushState(
-    {
-        poem:
-            poem.filename
-    },
-    "",
-    url
-);
-
-
-displayPoem(
-    poem
-);
-```
-
-}
-
-/* =========================================
-DISPLAY POEM
-========================================= */
-
-function displayPoem(poem) {
-
-```
-selectedPoem =
-    poem;
-
-
-emptyState
-    .classList
-    .add("hidden");
-
-
-note
-    .classList
-    .remove("hidden");
-
-
-noteTitle.textContent =
-    poem.title;
-
-
-noteDate.textContent =
-    formatDate(
-        poem.date
-    );
-
-
-const rendered =
-    marked.parse(
-        poem.content,
-        {
+    const rendered =
+        marked.parse(poem.content, {
             breaks: true,
             gfm: true
-        }
-    );
+        });
 
+    noteContent.innerHTML =
+        DOMPurify.sanitize(rendered);
 
-noteContent.innerHTML =
-    DOMPurify.sanitize(
-        rendered
-    );
-
-
-githubButton.onclick =
-    () => {
-
+    githubButton.onclick = () => {
         window.open(
             poem.githubURL,
             "_blank",
             "noopener,noreferrer"
         );
-
     };
 
+    renderNotesList(searchInput.value);
 
-renderNotesList(
-    searchInput.value
-);
+    /*
+       On phones, show the poem.
+    */
 
+    if (window.innerWidth <= 700) {
+        document
+            .querySelector(".app")
+            .classList.add("show-note");
+    }
 
-/*
-   On mobile, hide the notes list
-   and show the poem.
-*/
+    /*
+       Update browser URL without reloading.
+    */
 
-if (
-    window.innerWidth <= 700
-) {
+    const url =
+        new URL(window.location.href);
 
-    document
-        .querySelector(".app")
-        .classList
-        .add("show-note");
-
-}
-```
-
-}
-
-/* =========================================
-RETURN TO FRONT PAGE
-========================================= */
-
-function showFrontPage(
-addHistory = true
-) {
-
-```
-selectedPoem = null;
-
-
-const url =
-    new URL(
-        window.location.href
+    url.searchParams.set(
+        "poem",
+        poem.filename
     );
-
-
-url.searchParams.delete(
-    "poem"
-);
-
-
-if (addHistory) {
-
-    history.pushState(
-        {
-            poem: null
-        },
-        "",
-        url
-    );
-
-} else {
 
     history.replaceState(
-        {
-            poem: null
-        },
+        {},
         "",
         url
     );
-
 }
 
-
-note
-    .classList
-    .add("hidden");
-
-
-emptyState
-    .classList
-    .remove("hidden");
-
-
-document
-    .querySelector(".app")
-    .classList
-    .remove("show-note");
-
-
-renderNotesList(
-    searchInput.value
-);
-```
-
-}
 
 /* =========================================
-MOBILE BACK BUTTON
+   SEARCH
 ========================================= */
 
-if (mobileBackButton) {
-
-```
-mobileBackButton.addEventListener(
-    "click",
-    () => {
-
-        showFrontPage(true);
-
-    }
-);
-```
-
-}
-
-/* =========================================
-BROWSER BACK / FORWARD
-========================================= */
-
-window.addEventListener(
-"popstate",
-() => {
-
-```
-    const requestedPoem =
-        new URLSearchParams(
-            window.location.search
-        ).get("poem");
-
-
-    if (!requestedPoem) {
-
-        showFrontPage(false);
-
-        return;
-
-    }
-
-
-    const poem =
-        poems.find(
-            item =>
-                item.filename ===
-                requestedPoem
-        );
-
-
-    if (poem) {
-
-        displayPoem(
-            poem
-        );
-
-    } else {
-
-        showFrontPage(false);
-
-    }
-
-}
-```
-
-);
-
-/* =========================================
-SEARCH
-========================================= */
-
-if (searchInput) {
-
-```
 searchInput.addEventListener(
     "input",
     event => {
-
-        renderNotesList(
-            event.target.value
-        );
-
+        renderNotesList(event.target.value);
     }
 );
-```
 
-}
 
 /* =========================================
-PREVIEW
+   PREVIEW
 ========================================= */
 
 function getPreview(markdown) {
 
-```
-return markdown
-
-    .replace(
-        /[#*_>`~-]/g,
-        ""
-    )
-
-    .replace(
-        /\[([^\]]+)\]\([^)]+\)/g,
-        "$1"
-    )
-
-    .replace(
-        /\s+/g,
-        " "
-    )
-
-    .trim()
-
-    .substring(
-        0,
-        100
-    );
-```
-
+    return markdown
+        .replace(/[#*_>`~-]/g, "")
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/\s+/g, " ")
+        .trim()
+        .substring(0, 100);
 }
 
+
 /* =========================================
-ESCAPE HTML
+   ESCAPE HTML
 ========================================= */
 
 function escapeHTML(text) {
 
-```
-return text
-
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-```
-
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
+
 /* =========================================
-ERRORS
+   ERRORS
 ========================================= */
 
 function showError(message) {
 
-```
-notesList.innerHTML = `
-
-    <div class="error-message">
-
-        ${escapeHTML(message)}
-
-    </div>
-
-`;
-```
-
+    notesList.innerHTML = `
+        <div class="error-message">
+            ${escapeHTML(message)}
+        </div>
+    `;
 }
+
 
 function showEmptyRepository() {
 
-```
-notesList.innerHTML = `
-
-    <div class="no-results">
-
-        No poems yet.
-
-    </div>
-
-`;
-```
-
+    notesList.innerHTML = `
+        <div class="no-results">
+            No poems yet.
+        </div>
+    `;
 }
 
+
 /* =========================================
-START
+   START
 ========================================= */
 
 loadPoems();
