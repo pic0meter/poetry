@@ -1,7 +1,7 @@
 ---
 title: Thesaurus Rex
 date: 2026-10-09
-background: url('./assets/thesaurus.gif') center / cover repeat
+background: url('./assets/IMG_2291.gif') center / cover repeat
 ---
 
 Wondering, yet the mind remains trapped in its own design,
