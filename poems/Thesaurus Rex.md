@@ -59,11 +59,11 @@ Admitting that our vocabularies were always broken.
 Concinnate, for what good are words, however neatly arranged,
 When the raw thing they try to name remains unchanged?
 
-So let the page run dry.
+_So let the page run dry.
 No more tagging the dark,
 no more forcing a quiet pulse
 into neat, deliberate ink.
 Just your breath,
 my breath,
 and the silence that survives
-when the last word is gone.
+when the last word is gone._
