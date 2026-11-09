@@ -34,7 +34,7 @@ Crashing loudly like a distant, thunderous drum.
 Precipitate, an experience of sudden epiphanies—
 Fumbling to name two dissonant symphonies.
 
-The dictionary chokes.
+_The dictionary chokes.
 It isn't a meeting of waters,
 it isn't an algorithm,
 it isn't a slow burn or a spark.
@@ -42,7 +42,7 @@ It is just the sudden, unnameable weight
 of your shadow falling across my hands
 while the room goes entirely quiet,
 and every invented word turns to dust
-on the tongue.
+on the tongue._
 
 Slow burn, a narrative trope for patience taking time
 To label a tapestry the stars might not design.
