@@ -14,12 +14,12 @@ Failing to make the incomprehensible understandable.
 Imponderable, this label only diminishes what I feel,
 While every failure to define it makes the truth more real.
 
-Speechless, a word itself that fails to articulate
+Speechless, a word itself that fails to articulate,
 The muted frequency two quiet souls create.
 Hamstrung, when even language fails to draw us near,
 Leaving a boundary line no single word can clear.
 
-Presence, a shallow substitute without a name
+Presence, a shallow substitute without a name,
 For persistent, quiet feelings that endure the same.
 Longing, a syllable cast into endless space,
 Grasping for familiarity in an unknown embrace.
@@ -44,14 +44,14 @@ while the room goes entirely quiet,
 and every invented word turns to dust
 on the tongue._
 
-Slow burn, a narrative trope for patience taking time
+Slow burn, a narrative trope for patience taking time,
 To label a tapestry the stars might not design.
-Dreaming, a soft cover for how your thoughts and mine
+Dreaming, a soft cover for how your thoughts and mine,
 Refuse to be neatly categorized or intertwined.
 
 Fleeting, a temporary sound pressed against the skin,
 Asking where definition ends and raw feeling begins.
-Boundless, a grand noun trying to hold control
+Boundless, a grand noun trying to hold control,
 Over the single spark that warms a quiet soul.
 
 Implicit, the confession that these feelings can't be spoken,
