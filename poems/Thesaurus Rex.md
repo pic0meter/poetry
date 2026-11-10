@@ -4,76 +4,71 @@ date: 2026-10-09
 background: url('./assets/IMG_2291.gif') center / cover repeat
 ---
 
-_I’m deciphering every syllable,
+I’m deciphering every syllable,
 every synonym,
 every phoneme,
-to find the apt definition,
-to the delicate-
-yet futile endeavor-
-of confining an immeasurable feelings,
-and unsurmountable reveries,
-within the finite boundaries of language._
+to find the apt definition
+for the delicate 
+yet futile endeavor of 
+confining an immeasurable feeling
+and sombre reveries
+within the finite boundaries of language.
 
-Wondering, yet the mind remains trapped in its own design,
-Constraining chaos into one poor spoken line.
-Wandering, for every chosen term hits a cul-de-sac—
-A thousand concepts tried, yet none to bring it back.
+Wondering how words remained trapped in their own context, 
+Constraining meaning for each hidden subtext. Wandering, as every chosen term leads to an aporia,
+A thousand avenues explored, yet none leading to Elysia.
 
 Abstract, a distant tag for what remains intangible,
-Failing to make the incomprehensible understandable.
-Imponderable, this label only diminishes what I feel,
-While every failure to define it makes the truth more real.
+Struggling to render the arcane comprehensible.
+Carnate, the presence and form of what I feel,
+Yet neither word nor matter can make it real.
 
-Speechless, a word itself that fails to articulate,
-The muted frequency two quiet souls create.
-Hamstrung, when even language fails to draw us near,
-Leaving a boundary line no single word can clear.
+Speechless, I grasp for words that fail to articulate,
+This muted frequency our quiet souls create.
+Hamstrung, an incorporeal apparition that keeps me ensnared,
+Leaving an unbridgeable divide that remains undeclared.
 
-Presence, a shallow substitute without a name,
-For persistent, quiet feelings that endure the same.
-Longing, a syllable cast into endless space,
-Grasping for familiarity in an unknown embrace.
+Object, a form the naked eye may see,
+A corporeal truth the hands may claim to be.
+Object, for what we are eludes a name,
+An unseen force no language can contain.
 
-Mutual, we call it—though the word betrays the course,
-Attempting to frame an unnamable, silent force.
-Convergent, a structural term for two paths joined as one,
-Yet naming the pattern leaves the fate unchanged, undone.
-
-Confluence, a technical phrase for streams that meet as one,
-Crashing loudly like a distant, thunderous drum.
-Precipitate, an experience of sudden epiphanies—
-Fumbling to name two dissonant symphonies.
-
-_The dictionary chokes.
-It isn't a meeting of waters,
-it isn't an algorithm,
-it isn't a slow burn or a spark.
-It is just the sudden-
-unnameable weight of your shadow falling across my hands,
+The dictionary chokes.
+It isn’t an algorithm,
+it isn't a physical feeling,
+nor an inanimate presence.
+It is just the sudden, unnameable weight
+of your shadow falling across my hands
 while the room goes entirely quiet,
 and every invented word turns to dust
-on the tongue._
+on the tongue.
 
-Slow burn, a narrative trope for patience taking time,
+Repulsion, two paths that betray the course,
+Resisting the pull of an unnamable, mutual force.
+Convergent, our trajectories joined as one,
+But surrendered to the wreck of orbits undone.
+
+Slow burn, as patience takes its time,
 To label a tapestry the stars might not design.
 Dreaming, a soft cover for how your thoughts and mine,
 Refuse to be neatly categorized or intertwined.
 
-Fleeting, a temporary sound pressed against the skin,
+Fleeting, a temporary sentiment pressed against the skin,
 Asking where definition ends and raw feeling begins.
-Boundless, a grand noun trying to hold control,
-Over the single spark that warms a quiet soul.
+Possess, as emotion tries to seize control,
+Over the evanescent spark that warms a quiet soul.
 
-Implicit, the confession that these feelings can't be spoken,
-Admitting that our vocabularies were always broken.
+Implicit, all these feelings remain unspoken,
+Admitting that language was inherently broken.
 Concinnate, for what good are words, however neatly arranged,
-When the raw thing they try to name remains unchanged?
+When the raw thing they illustrate remains unnamed?
 
-_So let the page run dry.
+So let the page run dry.
 No more tagging the dark,
 no more forcing a quiet pulse
+no more writing the correct meaning
 into neat, deliberate ink.
-Just your breath,
-my breath,
+Just your name,
+my name,
 and the silence that survives
-when the last word is gone._
+when the last word is spoken.
