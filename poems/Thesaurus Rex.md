@@ -4,6 +4,16 @@ date: 2026-10-09
 background: url('./assets/IMG_2291.gif') center / cover repeat
 ---
 
+_I’m deciphering every syllable,
+every synonym,
+every phoneme,
+to find the apt definition,
+to the delicate-
+yet futile endeavor-
+of confining an immeasurable feelings,
+and unsurmountable reveries,
+within the finite boundaries of language._
+
 Wondering, yet the mind remains trapped in its own design,
 Constraining chaos into one poor spoken line.
 Wandering, for every chosen term hits a cul-de-sac—
@@ -38,8 +48,8 @@ _The dictionary chokes.
 It isn't a meeting of waters,
 it isn't an algorithm,
 it isn't a slow burn or a spark.
-It is just the sudden, unnameable weight
-of your shadow falling across my hands
+It is just the sudden-
+unnameable weight of your shadow falling across my hands,
 while the room goes entirely quiet,
 and every invented word turns to dust
 on the tongue._
