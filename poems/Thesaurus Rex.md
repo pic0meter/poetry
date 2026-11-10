@@ -15,7 +15,8 @@ and sombre reveries
 within the finite boundaries of language.
 
 Wondering how words remained trapped in their own context, 
-Constraining meaning for each hidden subtext. Wandering, as every chosen term leads to an aporia,
+Constraining meaning for each hidden subtext. 
+Wandering, as every chosen term leads to an aporia,
 A thousand avenues explored, yet none leading to Elysia.
 
 Abstract, a distant tag for what remains intangible,
